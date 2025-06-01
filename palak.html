@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8"></meta>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+  <title>Contact Us</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .form-section, .info-section {
+      flex: 1 1 50%;
+      padding: 30px;
+    }
+
+    .form-section h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    form button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .info-section {
+      background-color: #f1f1f1;
+    }
+
+    .info-section h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .info-section p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    @media screen and (max-width: 768px) {
+      .form-section, .info-section {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="form-section">
+      <h2>Contact Us</h2>
+      <form action="https://formsubmit.co/palakkumayu09@gmail.com" method="POST" id="contact_form">
+        <input name="name" placeholder="Your Name" required="" type="text" />
+        <input name="email" placeholder="Your Email" required="" type="email" />
+        <input name="phone" placeholder="Your Phone No." required="" type="text" />
+        <textarea name="message" placeholder="Your Message" required="" rows="5"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="info-section">
+      <h2>Contact Information</h2>
+      <p><strong>Email:</strong> info@thepalakelecronics.com</p>
+      <p><strong>Phone:</strong> +1 88 999 88 7678</p>
+      <p><strong>Office Location:</strong> Vijay Nagar, Indore</p>
+    </div>
+  </div>
+
+
+  <script>
+    document.getElementById("contact_form").addEventListener("submit", (e) =>{
+      e.preventDefault();
+      const form = e.target;
+
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        message: form.message.value,
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbw9OM8AMg9NW3yX9p3hH9x27baIEXpqCG7H378rASk03KQBgNW9bAxoYmSFgkn2h97Byg/exec", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }).then(res => res.text()).then(data => {
+        alert("Message sent successfully")
+        form.reset();
+      }).catch(err => {
+        alert("Error sending message.")
+        console.error(err)
+      })
+
+    } )
+  </script>
+</body>
+</html>
